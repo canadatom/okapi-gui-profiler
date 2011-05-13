@@ -14,13 +14,15 @@ import okapiprofiler.Okapi;
  */
 public class OkapiTables {
 
-    public JTable getDebugTable(Okapi okapi) {
+    public JTable getOkapiFilesTable(Okapi okapi) {
         JTable debugTable = new JTable();
         debugTable.setName("debugTable");
 
         String[][] debugData = {
             {OkapiConstants.ROOTPATH, okapi.getOkapiRoot().getAbsolutePath()},
-            {OkapiConstants.ENVISET, ""}
+            {OkapiConstants.ENVISET, okapi.getEnviset().getAbsolutePath()},
+            {OkapiConstants.DBAVAIL, okapi.getDbavail().getAbsolutePath()},
+            {OkapiConstants.STOPWORD, okapi.getStopword().getAbsolutePath()}
         };
 
         debugTable.setModel(new DefaultTableModel(debugData, OkapiConstants.DEBUGTABLEHEADER) {
@@ -29,7 +31,7 @@ public class OkapiTables {
                 java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean[]{
-                false, true
+                false, false
             };
 
             @Override
@@ -43,7 +45,9 @@ public class OkapiTables {
             }
         });
 
-        okapi.setDebugDataTable(debugTable);
+        okapi.setOkapiFilesTable(debugTable);
         return debugTable;
     }
+
+
 }
