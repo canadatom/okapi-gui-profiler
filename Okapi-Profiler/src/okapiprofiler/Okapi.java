@@ -15,11 +15,13 @@ import javax.swing.JTable;
 public class Okapi {
 
     File okapiRoot;
+    File database;
     File enviset;
     File dbavail;
     File stopword;
     ArrayList<String> dbList;
     JTable okapiFilesTable;
+    JTable okapiDbListTable;
 
     public Okapi() {
         this.okapiRoot = null;
@@ -39,12 +41,28 @@ public class Okapi {
         this.okapiRoot = okapiRoot;
     }
 
-    public JTable geOkapiFilesTable() {
+    public File getDatabase() {
+        return this.database;
+    }
+
+    public void setDatabase(File database) {
+        this.database = database;
+    }
+
+    public JTable getOkapiFilesTable() {
         return this.okapiFilesTable;
     }
 
     public void setOkapiFilesTable(JTable okapiFilesTable) {
         this.okapiFilesTable = okapiFilesTable;
+    }
+
+    public JTable getOkapiDbListTable() {
+        return this.okapiDbListTable;
+    }
+
+    public void setOkapiDbListTable(JTable okapiDbListTable) {
+        this.okapiDbListTable = okapiDbListTable;
     }
 
     public File getEnviset() {

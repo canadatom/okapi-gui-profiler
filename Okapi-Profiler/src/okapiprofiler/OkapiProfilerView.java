@@ -12,6 +12,7 @@ import org.jdesktop.application.SingleFrameApplication;
 import org.jdesktop.application.FrameView;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import okapiprofiler.utilities.OkapiConstants;
 import okapiprofiler.utilities.OkapiTables;
@@ -78,7 +79,6 @@ public class OkapiProfilerView extends FrameView {
         jPanel2 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
         jPanel6 = new javax.swing.JPanel();
@@ -210,37 +210,6 @@ public class OkapiProfilerView extends FrameView {
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Databse Name", "DB Configure", "Search Group Configure"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTable1.setName("jTable1"); // NOI18N
-        jScrollPane1.setViewportView(jTable1);
-        jTable1.getColumnModel().getColumn(0).setHeaderValue(resourceMap.getString("jTable1.columnModel.title0")); // NOI18N
-        jTable1.getColumnModel().getColumn(1).setHeaderValue(resourceMap.getString("jTable1.columnModel.title1")); // NOI18N
-        jTable1.getColumnModel().getColumn(2).setHeaderValue(resourceMap.getString("jTable1.columnModel.title2")); // NOI18N
-
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -261,6 +230,7 @@ public class OkapiProfilerView extends FrameView {
         jPanel3.setFont(resourceMap.getFont("jPanel3.font")); // NOI18N
         jPanel3.setName("jPanel3"); // NOI18N
 
+        jScrollPane7.setBorder(null);
         jScrollPane7.setName("jScrollPane7"); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -912,19 +882,34 @@ public class OkapiProfilerView extends FrameView {
 
                 // set Okapi root, envionmentSettings and debug table
                 okapi.setOkapiRoot(file);
-                okapi.setEnviset(okapiUtils.getOkapiFile(file, OkapiConstants.ENVISET));
-                okapi.setDbavail(okapiUtils.getOkapiFile(file, OkapiConstants.DBAVAIL));
-                okapi.setStopword(okapiUtils.getOkapiFile(file, OkapiConstants.STOPWORD));
-                okapi.setDbList(okapiUtils.getDbList(okapi.getDbavail()));
+                if (new File(file.getAbsolutePath() + OkapiConstants.DATABASE).exists()
+                        && okapiUtils.getOkapiFile(file, OkapiConstants.ENVISET).exists()
+                        && okapiUtils.getOkapiFile(file, OkapiConstants.DBAVAIL).exists()
+                        && okapiUtils.getOkapiFile(file, OkapiConstants.STOPWORD).exists()) {
+                    okapi.setDatabase(new File(file.getAbsolutePath() + OkapiConstants.DATABASE));
+                    okapi.setEnviset(okapiUtils.getOkapiFile(file, OkapiConstants.ENVISET));
+                    okapi.setDbavail(okapiUtils.getOkapiFile(file, OkapiConstants.DBAVAIL));
+                    okapi.setStopword(okapiUtils.getOkapiFile(file, OkapiConstants.STOPWORD));
+                    okapi.setDbList(okapiUtils.getDbList(okapi.getDbavail()));
 
-                okapi.setOkapiFilesTable(okapiTables.getOkapiFilesTable(okapi));
+                    okapi.setOkapiFilesTable(okapiTables.getOkapiFilesTable(okapi));
+                    okapi.setOkapiDbListTable(okapiTables.getDbListTable(okapi));
+                } else {
+                    JOptionPane.showMessageDialog(jPanel5, "Please check your OKAPI directory ... ");
+                }
 
-                // add debug table to tab
-                jScrollPane7.setViewportView(okapi.geOkapiFilesTable());
 
-                jTabbedPane1.setEnabledAt(1, true); // Verification
+                // add files and db list tables to tab verfication
+                if (okapi.getOkapiFilesTable() != null && okapi.getOkapiDbListTable() != null) {
+                    jScrollPane7.setViewportView(okapi.getOkapiFilesTable());
+                    jScrollPane1.setViewportView(okapi.getOkapiDbListTable());
+
+                    jTabbedPane1.setEnabledAt(1, true); // Verification
+                }
+
+
             } catch (Exception ex) {
-                System.out.println("Problem accessing file" + file.getPath());
+                ex.printStackTrace();
             }
         }
 }//GEN-LAST:event_jButton1ActionPerformed
@@ -983,7 +968,6 @@ public class OkapiProfilerView extends FrameView {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
