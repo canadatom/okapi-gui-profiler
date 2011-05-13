@@ -5,7 +5,7 @@
 package okapiprofiler;
 
 import java.io.File;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.JTable;
 
 /**
  *
@@ -14,11 +14,13 @@ import javax.swing.table.DefaultTableModel;
 public class Okapi {
 
     File okapiRoot;
-    DefaultTableModel debugDataTable;
+    File enviset;
+    JTable debugDataTable;
 
     public Okapi() {
         this.okapiRoot = null;
-        debugDataTable = new DefaultTableModel() {
+        this.enviset = null;
+        this.debugDataTable = new JTable() {
         };
     }
 
@@ -30,11 +32,11 @@ public class Okapi {
         this.okapiRoot = okapiRoot;
     }
 
-    public DefaultTableModel getDebugDataTable() {
+    public JTable getDebugDataTable() {
         return this.debugDataTable;
     }
 
-    public void setDebugDataTable(DefaultTableModel debugDataTable) {
+    public void setDebugDataTable(JTable debugDataTable) {
         this.debugDataTable = debugDataTable;
     }
 }

@@ -4,8 +4,7 @@
  */
 package okapiprofiler.utilities;
 
-import javax.swing.table.DefaultTableModel;
-import okapiprofiler.Okapi;
+import java.io.File;
 
 /**
  *
@@ -13,18 +12,17 @@ import okapiprofiler.Okapi;
  */
 public class OkapiUtils {
 
-    public DefaultTableModel getDebugTable() {
-        Okapi okapi = new Okapi();
-
-        String[][] debugData = {
-            {"test1", "url1"}, {"test2", "url2"}, {"test3", "url3"}
-        };
-
-
-        DefaultTableModel debugTable = new DefaultTableModel(debugData, OkapiConstants.DEBUGTABLEHEADER) {
-        };
-        okapi.setDebugDataTable(debugTable);
-
-        return okapi.getDebugDataTable();
+    public File getEnviSet(File okapiRoot) {
+        File[] files = okapiRoot.listFiles();
+        File enviset = null;
+        if (files.length != 0) {
+            for (File file : files) {
+                if (file.getName().equals(OkapiConstants.ENVISET)) {
+                    enviset = file;
+                    break;
+                }
+            }
+        }
+        return enviset;
     }
 }

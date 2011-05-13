@@ -11,5 +11,9 @@ package okapiprofiler.utilities;
  */
 public class OkapiConstants {
     public static final String[] DEBUGTABLEHEADER = {"Variable", "Value"};
+
+    // debugTable
+    public static final String ROOTPATH = "rootPath";
+    public static final String ENVISET = "EnvironmentSettings.cshrc";
     
 }
