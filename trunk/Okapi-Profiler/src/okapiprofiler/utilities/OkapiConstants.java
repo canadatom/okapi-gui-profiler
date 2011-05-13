@@ -5,6 +5,8 @@
 
 package okapiprofiler.utilities;
 
+import java.io.File;
+
 /**
  *
  * @author QiangWu
@@ -14,6 +16,12 @@ public class OkapiConstants {
 
     // debugTable
     public static final String ROOTPATH = "rootPath";
-    public static final String ENVISET = "EnvironmentSettings.cshrc";
-    
+
+    // paths and urls
+    public static final String ENVISET = File.separator + "environmentSettings.cshrc";
+    public static final String DBAVAIL = File.separator + "databases" + File.separator + "db_avail";
+    public static final String STOPWORD = File.separator + "databases" + File.separator + "stopword";
+
+    // notes, special separator
+    public static final String DBAVAILSEPARATOR = "##";
 }
