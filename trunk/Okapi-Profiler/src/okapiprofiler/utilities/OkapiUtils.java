@@ -7,7 +7,6 @@ package okapiprofiler.utilities;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -34,8 +33,8 @@ public class OkapiUtils {
             Scanner scanner = new Scanner(new FileInputStream(dbavail));
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                if (!line.startsWith(OkapiConstants.DBAVAILSEPARATOR)) {
-                    dbList.add(line);
+                if (!line.startsWith(OkapiConstants.DBAVAIL_SEPARATOR)) {
+                    dbList.add(getDbName(line));
                 }
             }
 
@@ -44,5 +43,27 @@ public class OkapiUtils {
         }
 
         return dbList;
+    }
+
+    public File getDbConfig(File database, String dbName) {
+        File dbConfig = new File(database.getAbsolutePath() + File.separator + dbName);
+        if (dbConfig.exists()) {
+            return dbConfig;
+        }
+        return null;
+    }
+
+    public File getDbSearchConfig(File database, String dbName) {
+        File dbSearchConfig = new File(database.getAbsolutePath() + File.separator + dbName + OkapiConstants.DBSEARCH_EXT);
+        if (dbSearchConfig.exists()) {
+            return dbSearchConfig;
+        }
+        return null;
+    }
+
+    public String getDbName(String dbName) {
+        // remove " *"
+        dbName = dbName.substring(0, dbName.indexOf(OkapiConstants.DBAVAIL_POSTFIX) - 1);
+        return dbName;
     }
 }
