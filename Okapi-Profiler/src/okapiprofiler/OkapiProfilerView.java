@@ -4,7 +4,6 @@
 package okapiprofiler;
 
 import java.io.File;
-import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -14,17 +13,23 @@ import org.jdesktop.application.FrameView;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
+import okapiprofiler.utilities.OkapiTables;
+import okapiprofiler.utilities.OkapiUtils;
 
 /**
  * The application's main frame.
  */
 public class OkapiProfilerView extends FrameView {
-    
+
     public OkapiProfilerView(SingleFrameApplication app) {
         super(app);
-        okapi = new Okapi();
+
+        // init okapi
+        initOkapi();
         initComponents();
-        
+
+        // init GUI after components initialized
+        initGUI();
     }
 
     @Action
@@ -35,6 +40,22 @@ public class OkapiProfilerView extends FrameView {
             aboutBox.setLocationRelativeTo(mainFrame);
         }
         OkapiProfilerApp.getApplication().show(aboutBox);
+    }
+
+    private void initOkapi() {
+        okapi = new Okapi();
+        okapiTables = new OkapiTables();
+        okapiUtils = new OkapiUtils();
+    }
+
+    private void initGUI() {
+
+        // disable tabs except first tab
+        for (int i = 0; i < jTabbedPane1.getTabCount(); i++) {
+            if (i > 0) {
+                jTabbedPane1.setEnabledAt(i, false);
+            }
+        }
     }
 
     /** This method is called from within the constructor to
@@ -98,7 +119,6 @@ public class OkapiProfilerView extends FrameView {
         jButton12 = new javax.swing.JButton();
         jPanel15 = new javax.swing.JPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
-        jTable7 = new javax.swing.JTable();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
@@ -113,11 +133,15 @@ public class OkapiProfilerView extends FrameView {
 
         mainPanel.setName("mainPanel"); // NOI18N
 
+        jTabbedPane1.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(okapiprofiler.OkapiProfilerApp.class).getContext().getResourceMap(OkapiProfilerView.class);
+        jTabbedPane1.setToolTipText(resourceMap.getString("jTabbedPane1.toolTipText")); // NOI18N
+        jTabbedPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jTabbedPane1.setName("jTabbedPane1"); // NOI18N
 
         jPanel1.setName("jPanel1"); // NOI18N
+        jPanel1.setNextFocusableComponent(jPanel2);
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(okapiprofiler.OkapiProfilerApp.class).getContext().getResourceMap(OkapiProfilerView.class);
         jPanel14.setBorder(javax.swing.BorderFactory.createTitledBorder(null, resourceMap.getString("jPanel14.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, resourceMap.getFont("jPanel14.border.titleFont"), resourceMap.getColor("jPanel14.border.titleColor"))); // NOI18N
         jPanel14.setName("jPanel14"); // NOI18N
 
@@ -182,7 +206,8 @@ public class OkapiProfilerView extends FrameView {
                 .addContainerGap(242, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab(resourceMap.getString("jPanel1.TabConstraints.tabTitle"), jPanel1); // NOI18N
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("okapiprofiler/resources/OkapiProfilerView"); // NOI18N
+        jTabbedPane1.addTab(resourceMap.getString("jPanel1.TabConstraints.tabTitle"), null, jPanel1, bundle.getString("tabToolTip.GetStarted")); // NOI18N
 
         jPanel2.setName("jPanel2"); // NOI18N
 
@@ -853,25 +878,15 @@ public class OkapiProfilerView extends FrameView {
 
         jScrollPane7.setName("jScrollPane7"); // NOI18N
 
-        jTable7.setModel(okapi.getDebugDataTable());
-        jTable7.setName("jTable7"); // NOI18N
-        jScrollPane7.setViewportView(jTable7);
-
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
         jPanel15Layout.setHorizontalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel15Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel15Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab(resourceMap.getString("jPanel15.TabConstraints.tabTitle"), jPanel15); // NOI18N
@@ -952,6 +967,22 @@ public class OkapiProfilerView extends FrameView {
             setStatusBar(statusPanel);
         }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        jFileChooser3.setCurrentDirectory((new java.io.File(System.getProperty("user.dir"))).getParentFile());
+        int returnVal = jFileChooser3.showOpenDialog(mainPanel);
+        if (returnVal == javax.swing.JFileChooser.APPROVE_OPTION) {
+            File file = jFileChooser3.getSelectedFile();
+        }
+}//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        jFileChooser2.setCurrentDirectory((new java.io.File(System.getProperty("user.dir"))).getParentFile());
+        int returnVal = jFileChooser2.showOpenDialog(mainPanel);
+        if (returnVal == javax.swing.JFileChooser.APPROVE_OPTION) {
+            File file = jFileChooser2.getSelectedFile();
+        }
+}//GEN-LAST:event_jButton3ActionPerformed
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         jFileChooser1.setCurrentDirectory((new java.io.File(System.getProperty("user.dir"))).getParentFile());
         int returnVal = jFileChooser1.showOpenDialog(mainPanel);
@@ -964,29 +995,17 @@ public class OkapiProfilerView extends FrameView {
                 // set Okapi root
                 okapi.setOkapiRoot(file);
                 
+
+                jScrollPane7.setViewportView(okapiTables.getDebugTable(okapi));
+
+
+                jTabbedPane1.setEnabledAt(1, true); // Verification
+                jTabbedPane1.setEnabledAt(5, true); // Debug
             } catch (Exception ex) {
                 System.out.println("Problem accessing file" + file.getPath());
             }
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        jFileChooser2.setCurrentDirectory((new java.io.File(System.getProperty("user.dir"))).getParentFile());
-        int returnVal = jFileChooser2.showOpenDialog(mainPanel);
-        if (returnVal == javax.swing.JFileChooser.APPROVE_OPTION) {
-            File file = jFileChooser2.getSelectedFile();
-        }
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        jFileChooser3.setCurrentDirectory((new java.io.File(System.getProperty("user.dir"))).getParentFile());
-        int returnVal = jFileChooser3.showOpenDialog(mainPanel);
-        if (returnVal == javax.swing.JFileChooser.APPROVE_OPTION) {
-            File file = jFileChooser3.getSelectedFile();
-
-
-        }
-    }//GEN-LAST:event_jButton6ActionPerformed
+}//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {
         try {
@@ -1056,7 +1075,6 @@ public class OkapiProfilerView extends FrameView {
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
     private javax.swing.JTable jTable6;
-    private javax.swing.JTable jTable7;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar menuBar;
@@ -1064,4 +1082,6 @@ public class OkapiProfilerView extends FrameView {
     // End of variables declaration//GEN-END:variables
     private JDialog aboutBox;
     private Okapi okapi;
+    private OkapiTables okapiTables;
+    private OkapiUtils okapiUtils;
 }
