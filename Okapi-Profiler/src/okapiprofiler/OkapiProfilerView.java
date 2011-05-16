@@ -800,7 +800,13 @@ public class OkapiProfilerView extends FrameView {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         int rowNo = dbListTable.getSelectedRow();
+        if (rowNo != -1) {
+            JOptionPane.showMessageDialog(jPanel7, dbListTable.getValueAt(rowNo, 0) + " " + dbListTable.getValueAt(rowNo, 1) + " " + dbListTable.getValueAt(rowNo, 2));
+            
 
+        } else {
+            JOptionPane.showMessageDialog(jPanel7, "Please select one of database.");
+        }
     }//GEN-LAST:event_jButton7ActionPerformed
 
     public static void main(String args[]) {

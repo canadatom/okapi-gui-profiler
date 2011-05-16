@@ -97,4 +97,16 @@ public class OkapiUtils {
 
         return envirInfo;
     }
+
+    public ArrayList<String> getDBConfigs(File dbConfigFile) {
+        ArrayList<String> dbConfigs = new ArrayList<String>();
+        try{
+            Scanner scanner = new Scanner(dbConfigFile);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+        return dbConfigs;
+    }
 }

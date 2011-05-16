@@ -4,8 +4,10 @@
  */
 package okapiprofiler.utilities;
 
+import java.io.File;
 import java.util.ArrayList;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import okapiprofiler.Okapi;
 
@@ -93,6 +95,7 @@ public class OkapiTables {
             }
         });
 
+        dbListTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         okapi.setOkapiDbListTable(dbListTable);
         return dbListTable;
     }
@@ -125,5 +128,19 @@ public class OkapiTables {
         envirSetTable.setName(OkapiConstants.OKAPIENVIRSETTING_TABLENAME);
 
         return envirSetTable;
+    }
+
+    public JTable getDBConfigFileTable(Okapi okapi, File dbConfigFile) {
+        JTable dbConfigFileTable = new JTable();
+
+        
+        
+        return dbConfigFileTable;
+    }
+
+    public JTable getSearchGroupTable(Okapi okapi, File searchGroupFile) {
+        JTable searchGroupTable = new JTable();
+
+        return searchGroupTable;
     }
 }

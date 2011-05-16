@@ -17,11 +17,12 @@ public class OkapiConstants {
     public static final String OKAPIDBLIST_TABLENAME = "dbList";
     public static final String OKAPIENVIRSETTING_TABLENAME = "Environment Settings";
 
-
     // table headers
     public static final String[] OKAPIFILES_HEADER = {"Variable", "Value"};
     public static final String[] DBLIST_HEADER = {"Database Name", "DB Configure Name", "Search Group Configure Name"};
     public static final String[] ENVIRSETTING_HEADER = {"Property Name", "Value"};
+    public static final String[] DBCONFIG_HEADER = {"Property Name", "Value"};
+
     // okapi files table
     public static final String ROOTPATH = "rootPath";
     // paths and urls
