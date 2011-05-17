@@ -48,7 +48,10 @@ public class OkapiTables {
             }
         });
 
-        okapi.setOkapiFilesTable(okapiFilesTable);
+        okapiFilesTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        ;
+        //okapi.setOkapiFilesTable(okapiFilesTable);
+
         return okapiFilesTable;
     }
 
@@ -96,7 +99,7 @@ public class OkapiTables {
         });
 
         dbListTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        okapi.setOkapiDbListTable(dbListTable);
+        //okapi.setOkapiDbListTable(dbListTable);
         return dbListTable;
     }
 
@@ -126,6 +129,7 @@ public class OkapiTables {
             }
         });
         envirSetTable.setName(OkapiConstants.OKAPIENVIRSETTING_TABLENAME);
+        envirSetTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         return envirSetTable;
     }
@@ -157,7 +161,7 @@ public class OkapiTables {
             }
         });
         dbConfigFileTable.setName(OkapiConstants.OKAPIDBCONFIG_TABLENAME);
-
+        dbConfigFileTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         return dbConfigFileTable;
     }
 
@@ -224,7 +228,7 @@ public class OkapiTables {
             }
         });
         searchGroupTable.setName(OkapiConstants.OKAPISEARCHGROUP_TABLENAME);
-
+        searchGroupTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         return searchGroupTable;
     }
 }
