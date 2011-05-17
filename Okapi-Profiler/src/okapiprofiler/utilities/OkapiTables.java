@@ -130,16 +130,100 @@ public class OkapiTables {
         return envirSetTable;
     }
 
-    public JTable getDBConfigFileTable(Okapi okapi, File dbConfigFile) {
+    public JTable getDBConfigFileTable(File dbConfigFile) {
         JTable dbConfigFileTable = new JTable();
+        OkapiUtils okapiUtils = new OkapiUtils();
+        ArrayList<String[]> dbConfigs = okapiUtils.getDBConfigs(dbConfigFile);
 
-        
-        
+        String[][] dbConfigList = new String[dbConfigs.size()][2];
+        for (int i = 0; i < dbConfigs.size(); i++) {
+            String[] dbConfig = new String[2];
+            dbConfig[0] = dbConfigs.get(i)[0];
+            dbConfig[1] = dbConfigs.get(i)[1];
+            dbConfigList[i] = dbConfig;
+        }
+
+        dbConfigFileTable.setModel(new javax.swing.table.DefaultTableModel(
+                dbConfigList,
+                OkapiConstants.DBCONFIG_HEADER) {
+
+            boolean[] canEdit = new boolean[]{
+                false, true
+            };
+
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
+        dbConfigFileTable.setName(OkapiConstants.OKAPIDBCONFIG_TABLENAME);
+
         return dbConfigFileTable;
     }
 
-    public JTable getSearchGroupTable(Okapi okapi, File searchGroupFile) {
+    public JTable getSearchGroupTable(File searchGroupFile) {
         JTable searchGroupTable = new JTable();
+
+        OkapiUtils okapiUtils = new OkapiUtils();
+        ArrayList<String> searchGroups = okapiUtils.getSearchGroup(searchGroupFile);
+        String[][] searchGroupList = new String[searchGroups.size()][2];
+        for (int i = 0; i < searchGroups.size(); i++) {
+            String searchGroup[] = new String[2];
+
+            switch (i) {
+                case 0:
+                    searchGroup[0] = OkapiConstants.SG_INDEX_NAME;
+                    break;
+                case 1:
+                    searchGroup[0] = OkapiConstants.SG_DUMMY;
+                    break;
+                case 2:
+                    searchGroup[0] = OkapiConstants.SG_INDEX_NO;
+                    break;
+                case 3:
+                    searchGroup[0] = OkapiConstants.SG_TERM_EX_REG;
+                    break;
+                case 4:
+                    searchGroup[0] = OkapiConstants.SG_STEM_FUNC_NAME;
+                    break;
+                case 5:
+                    searchGroup[0] = OkapiConstants.SG_GSL_FILENAME;
+                    break;
+                case 6:
+                    searchGroup[0] = OkapiConstants.SG_FIELD_LIST;
+                    break;
+                case 7:
+                    searchGroup[0] = OkapiConstants.SG_FIELD_LIST;
+                    break;
+                case 8:
+                    searchGroup[0] = OkapiConstants.SG_FIELD_LIST;
+                    break;
+                case 9:
+                    searchGroup[0] = OkapiConstants.SG_FIELD_LIST;
+                    break;
+                case 10:
+                    searchGroup[0] = OkapiConstants.SG_FIELD_LIST;
+                    break;
+            }
+
+            searchGroup[1] = searchGroups.get(i);
+            searchGroupList[i] = searchGroup;
+        }
+
+        searchGroupTable.setModel(new javax.swing.table.DefaultTableModel(
+                searchGroupList,
+                OkapiConstants.DBSEARCHGROUP_HEADER) {
+
+            boolean[] canEdit = new boolean[]{
+                false, true
+            };
+
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
+        searchGroupTable.setName(OkapiConstants.OKAPISEARCHGROUP_TABLENAME);
 
         return searchGroupTable;
     }

@@ -54,6 +54,8 @@ public class OkapiProfilerView extends FrameView {
         okapiFilesTable = new JTable();
         dbListTable = new JTable();
         envirSetTable = new JTable();
+        dbConfigTable = new JTable();
+        dbSearchGroupTable = new JTable();
     }
 
     private void initGUI() {
@@ -107,15 +109,13 @@ public class OkapiProfilerView extends FrameView {
         jTextField2 = new javax.swing.JTextField();
         jPanel8 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jTable5 = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         jPanel13 = new javax.swing.JPanel();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        jTable6 = new javax.swing.JTable();
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
+        jScrollPane5 = new javax.swing.JScrollPane();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
@@ -193,14 +193,14 @@ public class OkapiProfilerView extends FrameView {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(66, 66, 66)
                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(81, 81, 81)
                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(247, Short.MAX_VALUE))
+                .addContainerGap(242, Short.MAX_VALUE))
         );
 
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("okapiprofiler/resources/OkapiProfilerView"); // NOI18N
@@ -220,7 +220,7 @@ public class OkapiProfilerView extends FrameView {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -243,13 +243,13 @@ public class OkapiProfilerView extends FrameView {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -304,7 +304,7 @@ public class OkapiProfilerView extends FrameView {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 336, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 332, Short.MAX_VALUE)
                 .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
@@ -387,7 +387,7 @@ public class OkapiProfilerView extends FrameView {
                         .addComponent(jButton6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton5))
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
@@ -430,7 +430,7 @@ public class OkapiProfilerView extends FrameView {
                 .addGap(93, 93, 93)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+                .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(106, 106, 106))
@@ -466,7 +466,7 @@ public class OkapiProfilerView extends FrameView {
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(resourceMap.getString("jPanel7.TabConstraints.tabTitle"), jPanel7); // NOI18N
@@ -476,52 +476,7 @@ public class OkapiProfilerView extends FrameView {
         jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("jPanel12.border.title"))); // NOI18N
         jPanel12.setName("jPanel12"); // NOI18N
 
-        jScrollPane5.setName("jScrollPane5"); // NOI18N
-
-        jTable5.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"name", null, "2009trec", "<db_name> database name"},
-                {"lastbibvol", null, "1", "<no.files comprising the bibfile -1> This referes to the number of last bib files"},
-                {"bib_basename", null, "trec.2009trec0.bib", "<basename of bibfile>"},
-                {"bib_basename", null, "trec.2009trec1.bib", ""},
-                {"bib_dir", null, "/home/irelab/javokapi>bibfiles/", "<pathname of bibfile> Repeats (lastbibvol + 1) times"},
-                {"bibsize", null, "1200", "<in kilobytes> An overestimate of the available space on corresponding <bibvol>. It repeats (lastbibvol + 1) times"},
-                {"real_bibsize", null, "290041904", "<size of corresponding volume> In (bytes/<recmult>). A dummy value should be entered. The correct value is filled in by convert_runtime program. It is repeated (lastbibvol + 1) times."},
-                {"display_name", null, "trec.09article", "<info_display_name> What is to be displayed by the BSS \"info databases\" command"},
-                {"explanation", null, "trec.09article", "<additional explanatory line of text> "},
-                {"nr", null, "51092", "<number of records> Start with dummy value. The correct value is filled in by convert_runtime"},
-                {"nf", null, "2", "<number of fields per record>"},
-                {"f_abbrev", null, "DN", "<field abbreviation> Repeats nf times. Conventionally these are two-character mnemonics, unused at present"},
-                {"f_abbrev", null, "TI", "<field abbreviation> Repeats nf times. Conventionally these are two-character mnemonics, unused at present"},
-                {"rec_mult", null, "4", "<storage unit for a record, a small power of 2> Default 4"},
-                {"db_type", null, "ai", "<database_type> text or ai"},
-                {"has_lims", null, "0", ""},
-                {"maxreclen", null, "65024", "<max record length in bytes> filled in by convert_runtime"},
-                {"ni", null, "1", "<number of indexes> 1 <= ni <= 9"},
-                {"last_ixvol", null, "0", "<no of postings file volumes - 1> Default 0"},
-                {"ix_stem", null, "/home/irlab/javokapi/bibfiles/09article", "<pathname of index files + prefix>All index files must be in the same directory"},
-                {"ix_volsize", null, "1200", "<size in MB> Space available (MB) for index volume"},
-                {"ix_type", null, "13", "<index_type> 8 for <db_type>=text; 9 for others. 13 for special large file"},
-                {"no_drl", null, "0", ""}
-            },
-            new String [] {
-                "Property Name", "Value", "Sample Value", "Notes"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, true, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTable5.setName("jTable5"); // NOI18N
-        jScrollPane5.setViewportView(jTable5);
-        jTable5.getColumnModel().getColumn(0).setHeaderValue(resourceMap.getString("jTable5.columnModel.title0")); // NOI18N
-        jTable5.getColumnModel().getColumn(1).setHeaderValue(resourceMap.getString("jTable5.columnModel.title1")); // NOI18N
-        jTable5.getColumnModel().getColumn(2).setHeaderValue(resourceMap.getString("jTable5.columnModel.title3")); // NOI18N
-        jTable5.getColumnModel().getColumn(3).setHeaderValue(resourceMap.getString("jTable5.columnModel.title2")); // NOI18N
+        jScrollPane2.setName("jScrollPane2"); // NOI18N
 
         jButton9.setText(resourceMap.getString("jButton9.text")); // NOI18N
         jButton9.setName("jButton9"); // NOI18N
@@ -533,21 +488,21 @@ public class OkapiProfilerView extends FrameView {
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+            .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE)
-                    .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
                         .addComponent(jButton10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton9)))
+                        .addComponent(jButton9))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton9)
                     .addComponent(jButton10))
@@ -557,54 +512,13 @@ public class OkapiProfilerView extends FrameView {
         jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("jPanel13.border.title"))); // NOI18N
         jPanel13.setName("jPanel13"); // NOI18N
 
-        jScrollPane6.setName("jScrollPane6"); // NOI18N
-
-        jTable6.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"<index_name>", "", "kw", "The name or mnemonic"},
-                {"<dummy>", "", "1", "Unused dummy"},
-                {"<index_no>", null, "0", "Number of index"},
-                {"<term extraction regime>", null, "words3", "Word preprocessing file name"},
-                {"<stem function name>", null, "psstem", "Word preprocessing file name"},
-                {"<GSL filename>", null, "gsl.lemur", "Word preprocessing file name"},
-                {"<field_list>", null, "1", "starts from 1"},
-                {"<field number>", null, "1", "field number(1,2)"},
-                {"<seperator>", null, "0", "0 as seperator"},
-                {"<field number>", null, "2", "field number(1,2)"},
-                {"<seperator>", null, "0", "0 as seperator"},
-                {"<field_list>", null, "-1", "ends at -1"}
-            },
-            new String [] {
-                "Name", "Value", "Sample Value", "Notes"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, true, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTable6.setName("jTable6"); // NOI18N
-        jScrollPane6.setViewportView(jTable6);
-        jTable6.getColumnModel().getColumn(0).setHeaderValue(resourceMap.getString("jTable6.columnModel.title0")); // NOI18N
-        jTable6.getColumnModel().getColumn(1).setHeaderValue(resourceMap.getString("jTable6.columnModel.title1")); // NOI18N
-        jTable6.getColumnModel().getColumn(2).setHeaderValue(resourceMap.getString("jTable6.columnModel.title3")); // NOI18N
-        jTable6.getColumnModel().getColumn(3).setHeaderValue(resourceMap.getString("jTable6.columnModel.title2")); // NOI18N
-
         jButton11.setText(resourceMap.getString("jButton11.text")); // NOI18N
         jButton11.setName("jButton11"); // NOI18N
 
         jButton12.setText(resourceMap.getString("jButton12.text")); // NOI18N
         jButton12.setName("jButton12"); // NOI18N
+
+        jScrollPane5.setName("jScrollPane5"); // NOI18N
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -613,17 +527,17 @@ public class OkapiProfilerView extends FrameView {
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
                         .addComponent(jButton12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton11)))
+                        .addComponent(jButton11))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton11)
@@ -649,7 +563,7 @@ public class OkapiProfilerView extends FrameView {
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(resourceMap.getString("jPanel8.TabConstraints.tabTitle"), jPanel8); // NOI18N
@@ -789,9 +703,9 @@ public class OkapiProfilerView extends FrameView {
                     jTabbedPane1.setEnabledAt(1, true); // Verification
                     jTabbedPane1.setEnabledAt(2, true); // Environ Settings
                     jTabbedPane1.setEnabledAt(3, true); // DB List
+
+                    jTabbedPane1.setSelectedIndex(1);
                 }
-
-
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -801,8 +715,23 @@ public class OkapiProfilerView extends FrameView {
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         int rowNo = dbListTable.getSelectedRow();
         if (rowNo != -1) {
-            JOptionPane.showMessageDialog(jPanel7, dbListTable.getValueAt(rowNo, 0) + " " + dbListTable.getValueAt(rowNo, 1) + " " + dbListTable.getValueAt(rowNo, 2));
-            
+            // String dbName = (String) dbListTable.getValueAt(rowNo, 0);
+            String dbConfig = (String) dbListTable.getValueAt(rowNo, 1);
+            String dbSearchGroup = (String) dbListTable.getValueAt(rowNo, 2);
+
+            File dbConfigFile = new File(okapi.getDatabase() + File.separator + dbConfig);
+            File dbSearchGroupFile = new File(okapi.getDatabase() + File.separator + dbSearchGroup);
+
+            dbConfigTable = okapiTables.getDBConfigFileTable(dbConfigFile);
+            dbSearchGroupTable = okapiTables.getSearchGroupTable(dbSearchGroupFile);
+            okapi.setOkapiDbConfigTable(dbConfigTable);
+            okapi.setOkapiSearchGroupTable(dbSearchGroupTable);
+
+            jScrollPane2.setViewportView(okapi.getOkapiDbConfigTable());
+            jScrollPane5.setViewportView(okapi.getOkapiSearchGroupTable());
+
+            jTabbedPane1.setEnabledAt(4, true);
+            jTabbedPane1.setSelectedIndex(4);
 
         } else {
             JOptionPane.showMessageDialog(jPanel7, "Please select one of database.");
@@ -857,14 +786,12 @@ public class OkapiProfilerView extends FrameView {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable5;
-    private javax.swing.JTable jTable6;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JPanel mainPanel;
@@ -878,4 +805,6 @@ public class OkapiProfilerView extends FrameView {
     private JTable okapiFilesTable;
     private JTable dbListTable;
     private JTable envirSetTable;
+    private JTable dbConfigTable;
+    private JTable dbSearchGroupTable;
 }

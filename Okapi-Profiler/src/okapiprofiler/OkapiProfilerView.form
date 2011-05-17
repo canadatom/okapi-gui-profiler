@@ -64,7 +64,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
                           <Component id="jPanel14" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="59" max="32767" attributes="0"/>
+                          <EmptySpace pref="57" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -73,7 +73,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
                           <Component id="jPanel14" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="247" max="32767" attributes="0"/>
+                          <EmptySpace pref="242" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -213,7 +213,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jScrollPane1" pref="668" max="32767" attributes="0"/>
+                              <Component id="jScrollPane1" pref="664" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -256,7 +256,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jScrollPane7" pref="668" max="32767" attributes="0"/>
+                              <Component id="jScrollPane7" pref="664" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -264,7 +264,7 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jScrollPane7" pref="155" max="32767" attributes="0"/>
+                              <Component id="jScrollPane7" pref="149" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -349,7 +349,7 @@
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="336" max="32767" attributes="0"/>
+                              <EmptySpace pref="332" max="32767" attributes="0"/>
                               <Component id="jButton3" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jButton2" min="-2" max="-2" attributes="0"/>
@@ -428,7 +428,7 @@
                           <Component id="jPanel10" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel11" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="43" max="32767" attributes="0"/>
+                          <EmptySpace pref="37" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -461,7 +461,7 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jButton5" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="jScrollPane4" alignment="0" pref="668" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane4" alignment="0" pref="664" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -547,7 +547,7 @@
                               <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jTextField2" pref="176" max="32767" attributes="0"/>
+                              <Component id="jTextField2" pref="172" max="32767" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jButton8" min="-2" pref="151" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
@@ -631,7 +631,7 @@
                           <Component id="jPanel12" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel13" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="12" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -652,15 +652,15 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
+                          <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="jScrollPane5" alignment="0" pref="668" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="jButton10" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="jButton9" min="-2" max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="jScrollPane2" alignment="0" pref="664" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -669,8 +669,8 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="jScrollPane5" pref="156" max="32767" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jScrollPane2" pref="161" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jButton9" min="-2" max="-2" attributes="0"/>
                                   <Component id="jButton10" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -681,129 +681,12 @@
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Container class="javax.swing.JScrollPane" name="jScrollPane5">
+                    <Container class="javax.swing.JScrollPane" name="jScrollPane2">
                       <Properties>
-                        <Property name="name" type="java.lang.String" value="jScrollPane5" noResource="true"/>
+                        <Property name="name" type="java.lang.String" value="jScrollPane2" noResource="true"/>
                       </Properties>
-                      <AuxValues>
-                        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-                      </AuxValues>
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-                      <SubComponents>
-                        <Component class="javax.swing.JTable" name="jTable5">
-                          <Properties>
-                            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                              <Table columnCount="4" rowCount="23">
-                                <Column editable="false" title="Property Name" type="java.lang.Object">
-                                  <Data value="name"/>
-                                  <Data value="lastbibvol"/>
-                                  <Data value="bib_basename"/>
-                                  <Data value="bib_basename"/>
-                                  <Data value="bib_dir"/>
-                                  <Data value="bibsize"/>
-                                  <Data value="real_bibsize"/>
-                                  <Data value="display_name"/>
-                                  <Data value="explanation"/>
-                                  <Data value="nr"/>
-                                  <Data value="nf"/>
-                                  <Data value="f_abbrev"/>
-                                  <Data value="f_abbrev"/>
-                                  <Data value="rec_mult"/>
-                                  <Data value="db_type"/>
-                                  <Data value="has_lims"/>
-                                  <Data value="maxreclen"/>
-                                  <Data value="ni"/>
-                                  <Data value="last_ixvol"/>
-                                  <Data value="ix_stem"/>
-                                  <Data value="ix_volsize"/>
-                                  <Data value="ix_type"/>
-                                  <Data value="no_drl"/>
-                                </Column>
-                                <Column editable="true" title="Value" type="java.lang.Object"/>
-                                <Column editable="false" title="Sample Value" type="java.lang.Object">
-                                  <Data value="2009trec"/>
-                                  <Data value="1"/>
-                                  <Data value="trec.2009trec0.bib"/>
-                                  <Data value="trec.2009trec1.bib"/>
-                                  <Data value="/home/irelab/javokapi&gt;bibfiles/"/>
-                                  <Data value="1200"/>
-                                  <Data value="290041904"/>
-                                  <Data value="trec.09article"/>
-                                  <Data value="trec.09article"/>
-                                  <Data value="51092"/>
-                                  <Data value="2"/>
-                                  <Data value="DN"/>
-                                  <Data value="TI"/>
-                                  <Data value="4"/>
-                                  <Data value="ai"/>
-                                  <Data value="0"/>
-                                  <Data value="65024"/>
-                                  <Data value="1"/>
-                                  <Data value="0"/>
-                                  <Data value="/home/irlab/javokapi/bibfiles/09article"/>
-                                  <Data value="1200"/>
-                                  <Data value="13"/>
-                                  <Data value="0"/>
-                                </Column>
-                                <Column editable="false" title="Notes" type="java.lang.Object">
-                                  <Data value="&lt;db_name&gt; database name"/>
-                                  <Data value="&lt;no.files comprising the bibfile -1&gt; This referes to the number of last bib files"/>
-                                  <Data value="&lt;basename of bibfile&gt;"/>
-                                  <Data value=""/>
-                                  <Data value="&lt;pathname of bibfile&gt; Repeats (lastbibvol + 1) times"/>
-                                  <Data value="&lt;in kilobytes&gt; An overestimate of the available space on corresponding &lt;bibvol&gt;. It repeats (lastbibvol + 1) times"/>
-                                  <Data value="&lt;size of corresponding volume&gt; In (bytes/&lt;recmult&gt;). A dummy value should be entered. The correct value is filled in by convert_runtime program. It is repeated (lastbibvol + 1) times."/>
-                                  <Data value="&lt;info_display_name&gt; What is to be displayed by the BSS &quot;info databases&quot; command"/>
-                                  <Data value="&lt;additional explanatory line of text&gt; "/>
-                                  <Data value="&lt;number of records&gt; Start with dummy value. The correct value is filled in by convert_runtime"/>
-                                  <Data value="&lt;number of fields per record&gt;"/>
-                                  <Data value="&lt;field abbreviation&gt; Repeats nf times. Conventionally these are two-character mnemonics, unused at present"/>
-                                  <Data value="&lt;field abbreviation&gt; Repeats nf times. Conventionally these are two-character mnemonics, unused at present"/>
-                                  <Data value="&lt;storage unit for a record, a small power of 2&gt; Default 4"/>
-                                  <Data value="&lt;database_type&gt; text or ai"/>
-                                  <Data value=""/>
-                                  <Data value="&lt;max record length in bytes&gt; filled in by convert_runtime"/>
-                                  <Data value="&lt;number of indexes&gt; 1 &lt;= ni &lt;= 9"/>
-                                  <Data value="&lt;no of postings file volumes - 1&gt; Default 0"/>
-                                  <Data value="&lt;pathname of index files + prefix&gt;All index files must be in the same directory"/>
-                                  <Data value="&lt;size in MB&gt; Space available (MB) for index volume"/>
-                                  <Data value="&lt;index_type&gt; 8 for &lt;db_type&gt;=text; 9 for others. 13 for special large file"/>
-                                  <Data value=""/>
-                                </Column>
-                              </Table>
-                            </Property>
-                            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-                              <TableColumnModel selectionModel="0">
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                  <Title resourceKey="jTable5.columnModel.title0"/>
-                                  <Editor/>
-                                  <Renderer/>
-                                </Column>
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                  <Title resourceKey="jTable5.columnModel.title1"/>
-                                  <Editor/>
-                                  <Renderer/>
-                                </Column>
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                  <Title resourceKey="jTable5.columnModel.title3"/>
-                                  <Editor/>
-                                  <Renderer/>
-                                </Column>
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                  <Title resourceKey="jTable5.columnModel.title2"/>
-                                  <Editor/>
-                                  <Renderer/>
-                                </Column>
-                              </TableColumnModel>
-                            </Property>
-                            <Property name="name" type="java.lang.String" value="jTable5" noResource="true"/>
-                            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
-                            </Property>
-                          </Properties>
-                        </Component>
-                      </SubComponents>
                     </Container>
                     <Component class="javax.swing.JButton" name="jButton9">
                       <Properties>
@@ -837,12 +720,12 @@
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jScrollPane6" alignment="0" pref="668" max="32767" attributes="0"/>
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="jButton12" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jButton11" min="-2" max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="jScrollPane5" alignment="0" pref="664" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -851,7 +734,7 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jScrollPane6" min="-2" pref="152" max="-2" attributes="0"/>
+                              <Component id="jScrollPane5" min="-2" pref="152" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jButton11" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -863,110 +746,6 @@
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Container class="javax.swing.JScrollPane" name="jScrollPane6">
-                      <Properties>
-                        <Property name="name" type="java.lang.String" value="jScrollPane6" noResource="true"/>
-                      </Properties>
-                      <AuxValues>
-                        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-                      </AuxValues>
-
-                      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-                      <SubComponents>
-                        <Component class="javax.swing.JTable" name="jTable6">
-                          <Properties>
-                            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                              <Table columnCount="4" rowCount="12">
-                                <Column editable="false" title="Name" type="java.lang.Object">
-                                  <Data value="&lt;index_name&gt;"/>
-                                  <Data value="&lt;dummy&gt;"/>
-                                  <Data value="&lt;index_no&gt;"/>
-                                  <Data value="&lt;term extraction regime&gt;"/>
-                                  <Data value="&lt;stem function name&gt;"/>
-                                  <Data value="&lt;GSL filename&gt;"/>
-                                  <Data value="&lt;field_list&gt;"/>
-                                  <Data value="&lt;field number&gt;"/>
-                                  <Data value="&lt;seperator&gt;"/>
-                                  <Data value="&lt;field number&gt;"/>
-                                  <Data value="&lt;seperator&gt;"/>
-                                  <Data value="&lt;field_list&gt;"/>
-                                </Column>
-                                <Column editable="true" title="Value" type="java.lang.String">
-                                  <Data value=""/>
-                                  <Data value=""/>
-                                  <Data value="null"/>
-                                  <Data value="null"/>
-                                  <Data value="null"/>
-                                  <Data value="null"/>
-                                  <Data value="null"/>
-                                  <Data value="null"/>
-                                  <Data value="null"/>
-                                  <Data value="null"/>
-                                  <Data value="null"/>
-                                  <Data value="null"/>
-                                </Column>
-                                <Column editable="false" title="Sample Value" type="java.lang.String">
-                                  <Data value="kw"/>
-                                  <Data value="1"/>
-                                  <Data value="0"/>
-                                  <Data value="words3"/>
-                                  <Data value="psstem"/>
-                                  <Data value="gsl.lemur"/>
-                                  <Data value="1"/>
-                                  <Data value="1"/>
-                                  <Data value="0"/>
-                                  <Data value="2"/>
-                                  <Data value="0"/>
-                                  <Data value="-1"/>
-                                </Column>
-                                <Column editable="false" title="Notes" type="java.lang.String">
-                                  <Data value="The name or mnemonic"/>
-                                  <Data value="Unused dummy"/>
-                                  <Data value="Number of index"/>
-                                  <Data value="Word preprocessing file name"/>
-                                  <Data value="Word preprocessing file name"/>
-                                  <Data value="Word preprocessing file name"/>
-                                  <Data value="starts from 1"/>
-                                  <Data value="field number(1,2)"/>
-                                  <Data value="0 as seperator"/>
-                                  <Data value="field number(1,2)"/>
-                                  <Data value="0 as seperator"/>
-                                  <Data value="ends at -1"/>
-                                </Column>
-                              </Table>
-                            </Property>
-                            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-                              <TableColumnModel selectionModel="0">
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                  <Title resourceKey="jTable6.columnModel.title0"/>
-                                  <Editor/>
-                                  <Renderer/>
-                                </Column>
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                  <Title resourceKey="jTable6.columnModel.title1"/>
-                                  <Editor/>
-                                  <Renderer/>
-                                </Column>
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                  <Title resourceKey="jTable6.columnModel.title3"/>
-                                  <Editor/>
-                                  <Renderer/>
-                                </Column>
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                  <Title resourceKey="jTable6.columnModel.title2"/>
-                                  <Editor/>
-                                  <Renderer/>
-                                </Column>
-                              </TableColumnModel>
-                            </Property>
-                            <Property name="name" type="java.lang.String" value="jTable6" noResource="true"/>
-                            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
-                            </Property>
-                          </Properties>
-                        </Component>
-                      </SubComponents>
-                    </Container>
                     <Component class="javax.swing.JButton" name="jButton11">
                       <Properties>
                         <Property name="text" type="java.lang.String" resourceKey="jButton11.text"/>
@@ -979,6 +758,13 @@
                         <Property name="name" type="java.lang.String" value="jButton12" noResource="true"/>
                       </Properties>
                     </Component>
+                    <Container class="javax.swing.JScrollPane" name="jScrollPane5">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jScrollPane5" noResource="true"/>
+                      </Properties>
+
+                      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                    </Container>
                   </SubComponents>
                 </Container>
               </SubComponents>

@@ -91,22 +91,51 @@ public class OkapiUtils {
         StringTokenizer st = new StringTokenizer(envirSetting, " ");
         while (st.hasMoreTokens()) {
             st.nextToken();
-            envirInfo[0] = st.nextToken();
-            envirInfo[1] = st.nextToken();
+            envirInfo[0] = st.nextToken().trim();
+            envirInfo[1] = st.nextToken().trim();
         }
 
         return envirInfo;
     }
 
-    public ArrayList<String> getDBConfigs(File dbConfigFile) {
-        ArrayList<String> dbConfigs = new ArrayList<String>();
-        try{
+    public ArrayList<String[]> getDBConfigs(File dbConfigFile) {
+        ArrayList<String[]> dbConfigs = new ArrayList<String[]>();
+        try {
             Scanner scanner = new Scanner(dbConfigFile);
-        }catch (Exception e){
+
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                StringTokenizer st = new StringTokenizer(line, "=");
+                String[] config = new String[2];
+                while (st.hasMoreTokens()) {
+                    config[0] = st.nextToken().trim();
+                    config[1] = st.nextToken().trim();
+                }
+                dbConfigs.add(config);
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
-
         return dbConfigs;
+    }
+
+    public ArrayList<String> getSearchGroup(File dbSearchGroupFile) {
+        ArrayList<String> dbSearchConfig = new ArrayList<String>();
+
+        try {
+            Scanner scanner = new Scanner(new FileInputStream(dbSearchGroupFile));
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                StringTokenizer st = new StringTokenizer(line, " ");
+                while (st.hasMoreTokens()) {
+                    String config = st.nextToken();
+                    dbSearchConfig.add(config);
+                }
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(OkapiUtils.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return dbSearchConfig;
     }
 }
