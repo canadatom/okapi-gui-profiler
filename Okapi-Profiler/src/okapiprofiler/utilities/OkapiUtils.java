@@ -12,6 +12,8 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTable;
+import org.apache.commons.io.FileUtils;
 
 /**
  *
@@ -81,7 +83,7 @@ public class OkapiUtils {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(OkapiUtils.class.getName()).log(Level.SEVERE, null, e);
         }
         return envirSettingInfo;
     }
@@ -113,8 +115,8 @@ public class OkapiUtils {
                 }
                 dbConfigs.add(config);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            Logger.getLogger(OkapiUtils.class.getName()).log(Level.SEVERE, null, ex);
         }
         return dbConfigs;
     }
@@ -137,5 +139,85 @@ public class OkapiUtils {
         }
 
         return dbSearchConfig;
+    }
+
+    /**
+     * save table settings back to file
+     * @param envirSetTable
+     * @param enviset
+     * @return
+     */
+    public ArrayList<String[]> saveEnvirSettings(JTable envirSetTable, File enviset) {
+        ArrayList<String[]> changes = new ArrayList<String[]>();
+
+        ArrayList<String[]> envirSettings = new ArrayList<String[]>();
+        // traverse table and find udpates
+        for (int i = 0; i < envirSetTable.getRowCount(); i++) {
+            String[] envirSetting = new String[2];
+            envirSetting[0] = (String) envirSetTable.getValueAt(i, 0);
+            envirSetting[1] = (String) envirSetTable.getValueAt(i, 1);
+            envirSettings.add(envirSetting);
+        }
+
+        // read from environmental setting
+        try {
+            Scanner scanner = new Scanner(new FileInputStream(enviset));
+            String output = ""; // output string to new tmp file
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+
+                if (line.startsWith(OkapiConstants.SETTINGENVIR_PREFIX)) {
+                    StringTokenizer st = new StringTokenizer(line, " ");
+                    st.nextToken(); // prefix
+                    String name = st.nextToken();
+                    String value = st.nextToken();
+                    String newValue = getEnvirSetValueByName(envirSettings, name);
+                    if (!value.equals(newValue)) {
+
+                        // replace old value to new value
+                        line = line.replace(value, newValue);
+
+                        // modified value list
+                        String[] newSetting = {name, newValue};
+                        changes.add(newSetting);
+                        //System.out.println("changes add " + name + " " + newValue);
+                    }
+                }
+                output += line + "\n";
+            }
+            scanner.close();
+
+            if (!changes.isEmpty()) {
+                // save output to tmp file
+                // System.out.println(changes.size());
+                File tmpEnviset = new File(FileUtils.getTempDirectoryPath() + File.separator + enviset.getName());
+                //System.out.println(tmpEnviset.getAbsolutePath());
+
+                try {
+                    FileUtils.writeStringToFile(tmpEnviset, output);
+                    FileUtils.copyFile(tmpEnviset, enviset);
+                    FileUtils.deleteDirectory(tmpEnviset);
+                } catch (Exception ex) {
+                }
+
+            }
+        } catch (Exception ex) {
+        }
+
+
+
+
+        return changes;
+    }
+
+    private String getEnvirSetValueByName(ArrayList<String[]> envirSettings, String name) {
+
+        for (String[] envirSetting : envirSettings) {
+            if (envirSetting[0].equals(name)) {
+                return envirSetting[1];
+            }
+        }
+
+        return null;
     }
 }

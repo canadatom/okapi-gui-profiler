@@ -4,6 +4,7 @@
 package okapiprofiler;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -268,6 +269,11 @@ public class OkapiProfilerView extends FrameView {
 
         jButton2.setText(resourceMap.getString("jButton2.text")); // NOI18N
         jButton2.setName("jButton2"); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -679,7 +685,7 @@ public class OkapiProfilerView extends FrameView {
                     jTabbedPane1.setSelectedIndex(1);
                 }
             } catch (Exception ex) {
-                ex.printStackTrace();
+                Logger.getLogger(OkapiProfilerView.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 }//GEN-LAST:event_jButton1ActionPerformed
@@ -709,6 +715,20 @@ public class OkapiProfilerView extends FrameView {
             JOptionPane.showMessageDialog(jPanel7, "Please select one of database.");
         }
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+        ArrayList<String[]> changes = okapiUtils.saveEnvirSettings(envirSetTable, okapi.getEnviset());
+        if (!changes.isEmpty()) {
+            String msg = "The following properties have been modifed: \n";
+            for (String[] change : changes) {
+                msg += change[0] + " " + change[1] + "\n";
+            }
+            JOptionPane.showMessageDialog(jPanel6, msg);
+        }else{
+            JOptionPane.showMessageDialog(jPanel6, "There is no changes.");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     public static void main(String args[]) {
         try {

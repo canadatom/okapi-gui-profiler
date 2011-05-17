@@ -49,8 +49,6 @@ public class OkapiTables {
         });
 
         okapiFilesTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        ;
-        //okapi.setOkapiFilesTable(okapiFilesTable);
 
         return okapiFilesTable;
     }
@@ -99,7 +97,6 @@ public class OkapiTables {
         });
 
         dbListTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        //okapi.setOkapiDbListTable(dbListTable);
         return dbListTable;
     }
 
