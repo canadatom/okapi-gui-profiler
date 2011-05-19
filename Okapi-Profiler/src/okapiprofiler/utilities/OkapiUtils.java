@@ -1,13 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package okapiprofiler.utilities;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
@@ -93,8 +90,8 @@ public class OkapiUtils {
         StringTokenizer st = new StringTokenizer(envirSetting, " ");
         while (st.hasMoreTokens()) {
             st.nextToken();
-            envirInfo[0] = st.nextToken().trim();
-            envirInfo[1] = st.nextToken().trim();
+            envirInfo[0] = st.nextToken();
+            envirInfo[1] = st.nextToken();
         }
 
         return envirInfo;
@@ -110,8 +107,8 @@ public class OkapiUtils {
                 StringTokenizer st = new StringTokenizer(line, "=");
                 String[] config = new String[2];
                 while (st.hasMoreTokens()) {
-                    config[0] = st.nextToken().trim();
-                    config[1] = st.nextToken().trim();
+                    config[0] = st.nextToken();
+                    config[1] = st.nextToken();
                 }
                 dbConfigs.add(config);
             }
@@ -121,16 +118,24 @@ public class OkapiUtils {
         return dbConfigs;
     }
 
-    public ArrayList<String> getSearchGroup(File dbSearchGroupFile) {
-        ArrayList<String> dbSearchConfig = new ArrayList<String>();
+    public ArrayList<String[]> getSearchGroup(File dbSearchGroupFile) {
+        ArrayList<String[]> dbSearchConfig = new ArrayList<String[]>();
 
         try {
             Scanner scanner = new Scanner(new FileInputStream(dbSearchGroupFile));
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                StringTokenizer st = new StringTokenizer(line, " ");
-                while (st.hasMoreTokens()) {
-                    String config = st.nextToken();
+                if (!line.isEmpty()) {
+                    StringTokenizer st = new StringTokenizer(line, " ");
+                    String[] config = new String[st.countTokens()];
+                    int i = 0;
+                    int numOfTokens = st.countTokens();
+                    while (st.hasMoreTokens() && i < numOfTokens) {
+                        String token = st.nextToken();
+                        config[i] = token;
+                        // System.out.println(token + " " + i);
+                        i++;
+                    }
                     dbSearchConfig.add(config);
                 }
             }
@@ -144,25 +149,20 @@ public class OkapiUtils {
     /**
      * save table settings back to file
      * @param envirSetTable
-     * @param enviset
+     * @param enviSetFrom
      * @return
      */
-    public ArrayList<String[]> saveEnvirSettings(JTable envirSetTable, File enviset) {
+    public ArrayList<String[]> saveEnvirSettings(JTable envirSetTable, File enviSetFrom, File eviSetDest) {
         ArrayList<String[]> changes = new ArrayList<String[]>();
 
-        ArrayList<String[]> envirSettings = new ArrayList<String[]>();
-        // traverse table and find udpates
-        for (int i = 0; i < envirSetTable.getRowCount(); i++) {
-            String[] envirSetting = new String[2];
-            envirSetting[0] = (String) envirSetTable.getValueAt(i, 0);
-            envirSetting[1] = (String) envirSetTable.getValueAt(i, 1);
-            envirSettings.add(envirSetting);
-        }
+        ArrayList<String[]> envirSettings = convertTableToList(envirSetTable);
 
         // read from environmental setting
         try {
-            Scanner scanner = new Scanner(new FileInputStream(enviset));
+            Scanner scanner = new Scanner(new FileInputStream(enviSetFrom));
             String output = ""; // output string to new tmp file
+
+            int index = 0;
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
 
@@ -171,7 +171,8 @@ public class OkapiUtils {
                     st.nextToken(); // prefix
                     String name = st.nextToken();
                     String value = st.nextToken();
-                    String newValue = getEnvirSetValueByName(envirSettings, name);
+
+                    String newValue = getEnvirSetValueByName(envirSettings, name, index);
                     if (!value.equals(newValue)) {
 
                         // replace old value to new value
@@ -184,40 +185,158 @@ public class OkapiUtils {
                     }
                 }
                 output += line + "\n";
+
+                // only property lines are being counted as index
+                if (line.startsWith(OkapiConstants.SETTINGENVIR_PREFIX)) {
+                    index++;
+                }
             }
             scanner.close();
 
             if (!changes.isEmpty()) {
                 // save output to tmp file
                 // System.out.println(changes.size());
-                File tmpEnviset = new File(FileUtils.getTempDirectoryPath() + File.separator + enviset.getName());
+                File tmpEnviset = new File(FileUtils.getTempDirectoryPath() + File.separator + enviSetFrom.getName());
                 //System.out.println(tmpEnviset.getAbsolutePath());
 
                 try {
                     FileUtils.writeStringToFile(tmpEnviset, output);
-                    FileUtils.copyFile(tmpEnviset, enviset);
-                    FileUtils.deleteDirectory(tmpEnviset);
+                    FileUtils.copyFile(tmpEnviset, eviSetDest);
+                    FileUtils.forceDelete(tmpEnviset);
                 } catch (Exception ex) {
                 }
-
             }
         } catch (Exception ex) {
         }
 
-
-
-
         return changes;
     }
 
-    private String getEnvirSetValueByName(ArrayList<String[]> envirSettings, String name) {
+    private String getEnvirSetValueByName(ArrayList<String[]> envirSettings, String name, int index) {
 
-        for (String[] envirSetting : envirSettings) {
-            if (envirSetting[0].equals(name)) {
+        for (int i = 0; i < envirSettings.size(); i++) {
+            String[] envirSetting = envirSettings.get(i);
+
+            // make sure old and new value are in same line and position
+            if (envirSetting[0].equals(name) && index == i) {
                 return envirSetting[1];
             }
         }
 
         return null;
+    }
+
+    public ArrayList<String[]> saveDbConfigSettings(JTable dbConfigTable, File dbConfig) {
+        ArrayList<String[]> changes = new ArrayList<String[]>();
+
+        // get updated data
+        ArrayList<String[]> dbConfigTableData = convertTableToList(dbConfigTable);
+
+        // finding updates
+        try {
+            Scanner scanner = new Scanner(new FileInputStream(dbConfig));
+            String output = "";
+            int index = 0;
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                StringTokenizer st = new StringTokenizer(line, "=");
+                while (st.hasMoreTokens()) {
+                    String name = st.nextToken();
+                    String value = st.nextToken();
+                    String newValue = getDbConfigValueByName(dbConfigTableData, name, index);
+                    if (!value.equals(newValue)) {
+                        line = line.replace(value, newValue);
+
+                        String[] newConfigData = {name, value};
+                        changes.add(newConfigData);
+                    }
+                }
+                output += line + "\n";
+                index++;
+            }
+            scanner.close();
+
+            if (!changes.isEmpty()) {
+                // save output to tmp file
+                File tmpDbConfig = new File(FileUtils.getTempDirectoryPath() + File.separator + dbConfig.getName());
+                try {
+                    FileUtils.writeStringToFile(tmpDbConfig, output);
+                    FileUtils.copyFile(tmpDbConfig, dbConfig);
+                    FileUtils.forceDelete(tmpDbConfig);
+                } catch (Exception ex) {
+                }
+            }
+        } catch (Exception ex) {
+        }
+
+        return changes;
+    }
+
+    private String getDbConfigValueByName(ArrayList<String[]> dbConfigTableData, String name, int index) {
+        for (int i = 0; i < dbConfigTableData.size(); i++) {
+            String[] config = dbConfigTableData.get(i);
+            if (name.equals(config[0]) && index == i) {
+                return config[1];
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<String[]> saveDbSearchGroupSettings(JTable dbSearchGroupTable, File dbSearchGroup) {
+        ArrayList<String[]> changes = new ArrayList<String[]>();
+        ArrayList<String[]> dbSearchGroupData = convertTableToList(dbSearchGroupTable);
+
+        try {
+            Scanner scanner = new Scanner(new FileInputStream(dbSearchGroup));
+            String output = "";
+            int index = 0;
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                StringTokenizer st = new StringTokenizer(line, " ");
+
+                while (st.hasMoreTokens()) {
+                    String value = st.nextToken();
+                    String newValue = dbSearchGroupData.get(index)[1];
+                    if (!value.equals(newValue)) {
+                        changes.add(dbSearchGroupData.get(index));
+                        value = newValue;
+                    }
+                    output += value + " ";
+                    index++;
+                }
+                output = output.trim();
+                output += "\n";
+            }
+            scanner.close();
+
+
+            File tmpDbConfig = new File(FileUtils.getTempDirectoryPath() + File.separator + dbSearchGroup.getName());
+            try {
+                FileUtils.writeStringToFile(tmpDbConfig, output);
+                FileUtils.copyFile(tmpDbConfig, dbSearchGroup);
+                FileUtils.forceDelete(tmpDbConfig);
+            } catch (Exception ex) {
+            }
+        } catch (Exception ex) {
+        }
+        return changes;
+    }
+
+    /**
+     * 
+     * @param dataTable
+     * @return
+     */
+    private ArrayList<String[]> convertTableToList(JTable dataTable) {
+        ArrayList<String[]> dataList = new ArrayList<String[]>();
+
+        for (int i = 0; i < dataTable.getRowCount(); i++) {
+            String[] data = new String[2];
+            data[0] = (String) dataTable.getValueAt(i, 0);
+            data[1] = (String) dataTable.getValueAt(i, 1);
+            dataList.add(data);
+        }
+
+        return dataList;
     }
 }

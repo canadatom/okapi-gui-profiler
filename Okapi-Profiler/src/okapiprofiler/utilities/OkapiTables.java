@@ -1,15 +1,14 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package okapiprofiler.utilities;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import okapiprofiler.Okapi;
+import okapiprofiler.OkapiProfilerView;
 
 /**
  *
@@ -97,6 +96,16 @@ public class OkapiTables {
         });
 
         dbListTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        dbListTable.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                OkapiProfilerView.jButton7.setEnabled(true);
+            }
+        });
+
+
         return dbListTable;
     }
 
@@ -166,49 +175,55 @@ public class OkapiTables {
         JTable searchGroupTable = new JTable();
 
         OkapiUtils okapiUtils = new OkapiUtils();
-        ArrayList<String> searchGroups = okapiUtils.getSearchGroup(searchGroupFile);
-        String[][] searchGroupList = new String[searchGroups.size()][2];
-        for (int i = 0; i < searchGroups.size(); i++) {
-            String searchGroup[] = new String[2];
+        ArrayList<String[]> searchGroups = okapiUtils.getSearchGroup(searchGroupFile);
 
-            switch (i) {
-                case 0:
-                    searchGroup[0] = OkapiConstants.SG_INDEX_NAME;
-                    break;
-                case 1:
-                    searchGroup[0] = OkapiConstants.SG_DUMMY;
-                    break;
-                case 2:
-                    searchGroup[0] = OkapiConstants.SG_INDEX_NO;
-                    break;
-                case 3:
-                    searchGroup[0] = OkapiConstants.SG_TERM_EX_REG;
-                    break;
-                case 4:
-                    searchGroup[0] = OkapiConstants.SG_STEM_FUNC_NAME;
-                    break;
-                case 5:
-                    searchGroup[0] = OkapiConstants.SG_GSL_FILENAME;
-                    break;
-                case 6:
-                    searchGroup[0] = OkapiConstants.SG_FIELD_LIST;
-                    break;
-                case 7:
-                    searchGroup[0] = OkapiConstants.SG_FIELD_LIST;
-                    break;
-                case 8:
-                    searchGroup[0] = OkapiConstants.SG_FIELD_LIST;
-                    break;
-                case 9:
-                    searchGroup[0] = OkapiConstants.SG_FIELD_LIST;
-                    break;
-                case 10:
-                    searchGroup[0] = OkapiConstants.SG_FIELD_LIST;
-                    break;
+        // number of lines * strings in each line
+        int sizeOfList = searchGroups.get(0).length * searchGroups.size();
+
+        ArrayList<String[]> data = new ArrayList<String[]>();
+
+        for (int j = 0; j < searchGroups.size(); j++) {
+            String[] eachSeachGroup = searchGroups.get(j);
+
+            for (int i = 0; i < eachSeachGroup.length; i++) {
+                String[] searchGroup = new String[2];
+                switch (i) {
+                    case 0:
+                        searchGroup[0] = OkapiConstants.SG_INDEX_NAME;
+                        break;
+                    case 1:
+                        searchGroup[0] = OkapiConstants.SG_DUMMY;
+                        break;
+                    case 2:
+                        searchGroup[0] = OkapiConstants.SG_INDEX_NO;
+                        break;
+                    case 3:
+                        searchGroup[0] = OkapiConstants.SG_TERM_EX_REG;
+                        break;
+                    case 4:
+                        searchGroup[0] = OkapiConstants.SG_STEM_FUNC_NAME;
+                        break;
+                    case 5:
+                        searchGroup[0] = OkapiConstants.SG_GSL_FILENAME;
+                        break;
+                    case 6:
+                        searchGroup[0] = OkapiConstants.SG_FIELD_LIST;
+                        break;
+                    default:
+                        searchGroup[0] = OkapiConstants.SG_FIELD_LIST;
+                        break;
+                }
+
+                searchGroup[1] = eachSeachGroup[i];
+                //System.out.println(searchGroup[0] + " " + searchGroup[1]);
+                data.add(searchGroup);
             }
 
-            searchGroup[1] = searchGroups.get(i);
-            searchGroupList[i] = searchGroup;
+        }
+        // convert ArrayList into array
+        String[][] searchGroupList = new String[data.size()][2];
+        for (int i = 0; i < data.size(); i++) {
+            searchGroupList[i] = data.get(i);
         }
 
         searchGroupTable.setModel(new javax.swing.table.DefaultTableModel(
