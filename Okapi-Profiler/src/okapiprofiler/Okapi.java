@@ -12,6 +12,7 @@ public class Okapi {
 
     File okapiRoot;
     File database;
+    File bibfiles;
     File enviset;
     File dbavail;
     File stopword;
@@ -21,9 +22,12 @@ public class Okapi {
     JTable okapiEnvirSettingTable;
     JTable okapiDbConfigTable;
     JTable okapiSearchGroupTable;
+    JTable okapiAddDbTable;
 
     public Okapi() {
         this.okapiRoot = null;
+        this.database = null;
+        this.bibfiles = null;
         this.enviset = null;
         this.dbavail = null;
         this.stopword = null;
@@ -33,6 +37,7 @@ public class Okapi {
         this.okapiDbListTable = null;
         this.okapiDbConfigTable = null;
         this.okapiSearchGroupTable = null;
+        this.okapiAddDbTable = null;
     }
 
     public File getOkapiRoot() {
@@ -49,6 +54,14 @@ public class Okapi {
 
     public void setDatabase(File database) {
         this.database = database;
+    }
+
+    public File getBibfiles() {
+        return this.bibfiles;
+    }
+
+    public void setBibfiles(File bibfiles) {
+        this.bibfiles = bibfiles;
     }
 
     public JTable getOkapiFilesTable() {
@@ -89,6 +102,14 @@ public class Okapi {
 
     public void setOkapiSearchGroupTable(JTable okapiSearchGroupTable) {
         this.okapiSearchGroupTable = okapiSearchGroupTable;
+    }
+
+    public JTable getOkapiAddDbTable() {
+        return this.okapiAddDbTable;
+    }
+
+    public void setOkapiAddDbTable(JTable okapiAddDbTable) {
+        this.okapiAddDbTable = okapiAddDbTable;
     }
 
     public File getEnviset() {

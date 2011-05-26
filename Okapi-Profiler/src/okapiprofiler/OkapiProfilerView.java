@@ -57,6 +57,7 @@ public class OkapiProfilerView extends FrameView {
         envirSetTable = new JTable();
         dbConfigTable = new JTable();
         dbSearchGroupTable = new JTable();
+        addDbTable = new JTable();
 
         selectedDbConfigFile = null;
         selectedDbSearchGroupFile = null;
@@ -147,7 +148,7 @@ public class OkapiProfilerView extends FrameView {
 
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(okapiprofiler.OkapiProfilerApp.class).getContext().getActionMap(OkapiProfilerView.class, this);
         jButton1.setAction(actionMap.get("getStarted")); // NOI18N
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12));
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("okapiprofiler/resources/OkapiProfilerView"); // NOI18N
         jButton1.setText(bundle.getString("button.getstarted")); // NOI18N
         jButton1.setName("jButton1"); // NOI18N
@@ -373,6 +374,11 @@ public class OkapiProfilerView extends FrameView {
 
         jButton8.setText(resourceMap.getString("jButton8.text")); // NOI18N
         jButton8.setName("jButton8"); // NOI18N
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
@@ -607,7 +613,6 @@ public class OkapiProfilerView extends FrameView {
         int returnVal = jFileChooser1.showOpenDialog(mainPanel);
         if (returnVal == javax.swing.JFileChooser.APPROVE_OPTION) {
             File file = jFileChooser1.getSelectedFile();
-
             try {
                 jTextField1.setText(file.getPath());
 
@@ -616,8 +621,10 @@ public class OkapiProfilerView extends FrameView {
                 if (new File(file.getAbsolutePath() + OkapiConstants.DATABASE).exists()
                         && okapiUtils.getOkapiFile(file, OkapiConstants.ENVISET).exists()
                         && okapiUtils.getOkapiFile(file, OkapiConstants.DBAVAIL).exists()
-                        && okapiUtils.getOkapiFile(file, OkapiConstants.STOPWORD).exists()) {
+                        && okapiUtils.getOkapiFile(file, OkapiConstants.STOPWORD).exists()
+                        && okapiUtils.getOkapiFile(file, OkapiConstants.BIBFILES).exists()) {
                     okapi.setDatabase(new File(file.getAbsolutePath() + OkapiConstants.DATABASE));
+                    okapi.setBibfiles(okapiUtils.getOkapiFile(file, OkapiConstants.BIBFILES));
                     okapi.setEnviset(okapiUtils.getOkapiFile(file, OkapiConstants.ENVISET));
                     okapi.setDbavail(okapiUtils.getOkapiFile(file, OkapiConstants.DBAVAIL));
                     okapi.setStopword(okapiUtils.getOkapiFile(file, OkapiConstants.STOPWORD));
@@ -626,6 +633,7 @@ public class OkapiProfilerView extends FrameView {
                     okapi.setOkapiFilesTable(okapiTables.getOkapiFilesTable(okapi));
                     okapi.setOkapiDbListTable(okapiTables.getDbListTable(okapi));
                     okapi.setOkapiEnvirSettingTable(okapiTables.getEnvirSetTable(okapi));
+                    okapi.setOkapiAddDbTable(okapiTables.getAddDbTable());
                 } else {
                     JOptionPane.showMessageDialog(jPanel2, "Please check your OKAPI directory ... ");
                 }
@@ -636,10 +644,12 @@ public class OkapiProfilerView extends FrameView {
                     okapiFilesTable = okapi.getOkapiFilesTable();
                     dbListTable = okapi.getOkapiDbListTable();
                     envirSetTable = okapi.getOkapiEnvirSettingTable();
+                    addDbTable = okapi.getOkapiAddDbTable();
 
                     jScrollPane7.setViewportView(okapiFilesTable);
                     jScrollPane4.setViewportView(dbListTable);
                     jScrollPane3.setViewportView(envirSetTable);
+                    jScrollPane1.setViewportView(addDbTable);
 
 
                     jTabbedPane1.setEnabledAt(1, true); // Verification
@@ -750,6 +760,19 @@ public class OkapiProfilerView extends FrameView {
         }
     }//GEN-LAST:event_jButton11ActionPerformed
 
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        ArrayList<String[]> changes = okapiUtils.saveAddDbSettings(addDbTable, okapi.getDatabase(), okapi.getBibfiles());
+        if (!changes.isEmpty()) {
+            String msg = "The following values have been updated: \n";
+            for (String[] change : changes) {
+                msg += change[0] + " " + change[1] + "\n";
+            }
+            JOptionPane.showMessageDialog(jPanel7, msg);
+        } else {
+            JOptionPane.showMessageDialog(jPanel7, "Please fill all fields.");
+        }
+    }//GEN-LAST:event_jButton8ActionPerformed
+
     public static void main(String args[]) {
         try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
@@ -796,7 +819,6 @@ public class OkapiProfilerView extends FrameView {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
@@ -812,6 +834,7 @@ public class OkapiProfilerView extends FrameView {
     private JTable envirSetTable;
     private JTable dbConfigTable;
     private JTable dbSearchGroupTable;
+    private JTable addDbTable;
     File selectedDbConfigFile;
     File selectedDbSearchGroupFile;
 }

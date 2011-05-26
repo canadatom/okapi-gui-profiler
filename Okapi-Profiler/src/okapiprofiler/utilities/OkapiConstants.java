@@ -14,24 +14,41 @@ public class OkapiConstants {
     public static final String OKAPIENVIRSETTING_TABLENAME = "EnvironmentSettings";
     public static final String OKAPIDBCONFIG_TABLENAME = "dbConfigs";
     public static final String OKAPISEARCHGROUP_TABLENAME = "searchGroupConfig";
+    public static final String OKAPIADDDBTABLE_TABLENAME = "addTable";
     // table headers
     public static final String[] OKAPIFILES_HEADER = {"Variable", "Value"};
     public static final String[] DBLIST_HEADER = {"Database Name", "DB Configure Name", "Search Group Configure Name"};
     public static final String[] ENVIRSETTING_HEADER = {"Property Name", "Value"};
     public static final String[] DBCONFIG_HEADER = {"Property Name", "Value"};
     public static final String[] DBSEARCHGROUP_HEADER = {"Property Name", "Value"};
+    public static final String[] OKAPIADDDBTABLE_HEADER = {"Name", "Value"};
+    // table addDbTable names
+    public static final String ADDDBTABLE_DBNAME = "DB Name";
+    public static final String ADDDBTABLE_NUMOFFILES = "Number of bib files";
     // okapi files table
     public static final String ROOTPATH = "rootPath";
     // paths and urls
     public static final String ENVISET = File.separator + "environmentSettings.cshrc";
     public static final String DATABASE = File.separator + "databases";
+    public static final String BIBFILES = File.separator + "bibfiles";
     public static final String DBAVAIL = DATABASE + File.separator + "db_avail";
     public static final String STOPWORD = DATABASE + File.separator + "stopword";
+    public static final String SAMPLEDB = "/okapiprofiler/resources/sampleDb";
+    public static final String SAMPLEDBSG = "/okapiprofiler/resources/sampleDb.search_groups";
     // notes, special separator, extension
     public static final String DBAVAIL_SEPARATOR = "##";
     public static final char DBAVAIL_POSTFIX = '*';
     public static final String DBSEARCH_EXT = ".search_groups";
     public static final String SETTINGENVIR_PREFIX = "setenv";
+    // sampleDb
+    public static final String SAMPLEDB_NAME = "name";
+    public static final String SAMPLEDB_LASTBIBVOL = "lastbibvol";
+    public static final String SAMPLEDB_BIB_BASENAME = "bib_basename";
+    public static final String SAMPLEDB_BIB_BASENAME_EXT = ".bib";
+    public static final String SAMPLEDB_BIB_DIR = "bib_dir";
+    public static final String SAMPLEDB_BIB_SIZE = "bibsize";
+    public static final String SAMPLEDB_DISPLAY_NAME = "display_name";
+    public static final String SAMPLEDB_EXPLANATION = "explanation";
     // environmentSettings.cshrc
     public static final String ES_TMPDIR = "TMPDIR";
     public static final String ES_OKAPI_ROOT = "OKAPI_ROOT";

@@ -243,4 +243,37 @@ public class OkapiTables {
         searchGroupTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         return searchGroupTable;
     }
+
+    public JTable getAddDbTable() {
+        JTable addDbTable = new JTable();
+        addDbTable.setName(OkapiConstants.OKAPIADDDBTABLE_TABLENAME);
+
+        String[][] addDbTableData = {
+            {OkapiConstants.ADDDBTABLE_DBNAME, ""},
+            {OkapiConstants.ADDDBTABLE_NUMOFFILES, ""},
+            {OkapiConstants.SAMPLEDB_BIB_SIZE, ""}
+        };
+
+        addDbTable.setModel(new DefaultTableModel(addDbTableData, OkapiConstants.OKAPIADDDBTABLE_HEADER) {
+
+            Class[] types = new Class[]{
+                java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean[]{
+                false, true
+            };
+
+            @Override
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
+
+        return addDbTable;
+    }
 }
