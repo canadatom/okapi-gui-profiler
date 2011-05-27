@@ -761,13 +761,19 @@ public class OkapiProfilerView extends FrameView {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        ArrayList<String[]> changes = okapiUtils.saveAddDbSettings(addDbTable, okapi.getDatabase(), okapi.getBibfiles());
+        ArrayList<String[]> changes = okapiUtils.saveAddDbSettings(addDbTable, okapi);
         if (!changes.isEmpty()) {
-            String msg = "The following values have been updated: \n";
+            String msg = "";
             for (String[] change : changes) {
                 msg += change[0] + " " + change[1] + "\n";
             }
             JOptionPane.showMessageDialog(jPanel7, msg);
+
+            // fire dbListTable update
+            okapi.setDbList(okapiUtils.getDbList(okapi.getDbavail()));
+            okapi.setOkapiDbListTable(okapiTables.getDbListTable(okapi));
+            dbListTable = okapi.getOkapiDbListTable();
+            jScrollPane4.setViewportView(dbListTable);
         } else {
             JOptionPane.showMessageDialog(jPanel7, "Please fill all fields.");
         }

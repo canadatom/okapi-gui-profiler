@@ -67,7 +67,13 @@ public class OkapiTables {
                 String dbName = okapi.getDbList().get(i);
                 dbNames[0] = dbName;
                 dbNames[1] = okapiUtils.getDbConfig(okapi.getDatabase(), dbName).getName();
-                dbNames[2] = okapiUtils.getDbSearchConfig(okapi.getDatabase(), dbName).getName();
+                String dbSG = okapiUtils.getDbSearchConfig(okapi.getDatabase(), dbName).getName();
+                if (!dbSG.isEmpty()) {
+                    dbNames[2] = dbSG;
+                } else {
+                    dbNames[2] = "missing";
+                }
+
                 dbList[i] = dbNames;
             }
         } else {
@@ -96,7 +102,6 @@ public class OkapiTables {
         });
 
         dbListTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-
         dbListTable.addMouseListener(new MouseAdapter() {
 
             @Override

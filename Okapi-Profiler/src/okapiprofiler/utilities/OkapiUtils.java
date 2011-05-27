@@ -1,8 +1,11 @@
 package okapiprofiler.utilities;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.StringTokenizer;
@@ -345,17 +348,40 @@ public class OkapiUtils {
         return dataList;
     }
 
-    public ArrayList<String[]> saveAddDbSettings(JTable addDbTable, File database, File bibfiles) {
+    public ArrayList<String[]> saveAddDbSettings(JTable addDbTable, Okapi okapi) {
         ArrayList<String[]> changes = new ArrayList<String[]>();
         String dbName = (String) addDbTable.getValueAt(0, 1);
         String numOfFiles = (String) addDbTable.getValueAt(1, 1);
         String bibSize = (String) addDbTable.getValueAt(2, 1);
 
-        //System.out.println(numOfFiles);
+        File tarDbConfig = new File(okapi.getDatabase().getAbsolutePath() + File.separator + dbName);
+        File tarDbConfigSG = new File(okapi.getDatabase().getAbsolutePath() + File.separator + dbName + OkapiConstants.DBSEARCH_EXT);
+        File sampleDbFile = new File(getClass().getResource(OkapiConstants.SAMPLEDB).getFile());
+        File sampleDbSGFile = new File(getClass().getResource(OkapiConstants.SAMPLEDBSG).getFile());
 
-        if (!dbName.isEmpty() && !numOfFiles.isEmpty() && !bibSize.isEmpty()) {
+        ArrayList<String[]> addDbTableList = convertTableToList(addDbTable);
+        if (dbName.isEmpty()) {
+            changes.add(addDbTableList.get(0));
+        }
+
+        if (numOfFiles.isEmpty()) {
+            changes.add(addDbTableList.get(1));
+        }
+
+        if (bibSize.isEmpty()) {
+            changes.add(addDbTableList.get(2));
+        }
+
+        // if file name exist, generate error msg
+        if (!dbName.isEmpty() && tarDbConfig.exists()) {
+            String[] duplicate = {"Duplicate DB Name", dbName};
+            changes.add(duplicate);
+        }
+
+        if (!dbName.isEmpty() && !numOfFiles.isEmpty() && !bibSize.isEmpty()
+                && !tarDbConfig.exists()) {
             try {
-                File sampleDbFile = new File(getClass().getResource(OkapiConstants.SAMPLEDB).getFile());
+
                 FileInputStream sampleDbIS = new FileInputStream(sampleDbFile);
 
                 Scanner scanner = new Scanner(sampleDbIS);
@@ -376,7 +402,7 @@ public class OkapiUtils {
                         } else if (name.equals(OkapiConstants.SAMPLEDB_BIB_BASENAME)) {
                             line = line.replace(value, dbName + OkapiConstants.SAMPLEDB_BIB_BASENAME_EXT);
                         } else if (name.equals(OkapiConstants.SAMPLEDB_BIB_DIR)) {
-                            line = line.replace(value, bibfiles.getAbsolutePath());
+                            line = line.replace(value, okapi.getBibfiles().getAbsolutePath());
                         } else if (name.equals(OkapiConstants.SAMPLEDB_BIB_SIZE)) {
                             line = line.replace(value, bibSize);
                         } else if (name.equals(OkapiConstants.SAMPLEDB_DISPLAY_NAME)) {
@@ -390,21 +416,45 @@ public class OkapiUtils {
                 }
                 scanner.close();
 
-                File tarDbConfig = new File(database.getAbsolutePath() + File.separator + dbName);
                 try {
                     FileUtils.writeStringToFile(tarDbConfig, output);
+
+                    // write new database to dbavail
+                    BufferedWriter bw = null;
+                    try {
+                        bw = new BufferedWriter(new FileWriter(okapi.getDbavail(), true));
+                        bw.write(dbName + " " + OkapiConstants.DBAVAIL_POSTFIX);
+                        bw.newLine();
+                        bw.flush();
+                    } catch (IOException ex) {
+                        Logger.getLogger(OkapiUtils.class.getName()).log(Level.SEVERE, null, ex);
+                    } finally {
+                        if (bw != null) {
+                            try {
+                                bw.close();
+                            } catch (IOException ioe2) {
+                            }
+                        }
+                    }
                 } catch (Exception ex) {
                 }
+
+                // msg
+                String[] updatedDb = {"updated: ", dbName};
+                String[] updatedDbAvail = {"updated: ", okapi.getDbavail().getName()};
+                changes.add(updatedDb);
+                changes.add(updatedDbAvail);
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(OkapiUtils.class.getName()).log(Level.SEVERE, null, ex);
             }
 
+            // export dbConfig.searchgroup
             try {
-                File sampleDbSGFile = new File(getClass().getResource(OkapiConstants.SAMPLEDBSG).getFile());
-                FileInputStream sampleDbSGIS = new FileInputStream(sampleDbSGFile);
-            } catch (FileNotFoundException ex) {
+                FileUtils.copyFile(sampleDbSGFile, tarDbConfigSG);
+            } catch (IOException ex) {
                 Logger.getLogger(OkapiUtils.class.getName()).log(Level.SEVERE, null, ex);
             }
+
         }
 
 
