@@ -146,7 +146,20 @@ public class OkapiProfilerView extends FrameView {
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
+        jMenu5 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
+        jMenu7 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
+        jMenu8 = new javax.swing.JMenu();
+        jMenu9 = new javax.swing.JMenu();
+        jMenu10 = new javax.swing.JMenu();
+        jMenu6 = new javax.swing.JMenu();
+        jMenu11 = new javax.swing.JMenu();
         javax.swing.JMenu helpMenu = new javax.swing.JMenu();
+        jMenu12 = new javax.swing.JMenu();
+        jMenu13 = new javax.swing.JMenu();
         javax.swing.JMenuItem aboutMenuItem = new javax.swing.JMenuItem();
         infoPanel = new javax.swing.JPanel();
         javax.swing.JSeparator statusPanelSeparator = new javax.swing.JSeparator();
@@ -913,8 +926,65 @@ public class OkapiProfilerView extends FrameView {
 
         menuBar.add(fileMenu);
 
+        jMenu1.setText(resourceMap.getString("jMenu1.text")); // NOI18N
+        jMenu1.setName("jMenu1"); // NOI18N
+
+        jMenu2.setText(resourceMap.getString("jMenu2.text")); // NOI18N
+        jMenu2.setName("jMenu2"); // NOI18N
+
+        jMenu5.setText(resourceMap.getString("jMenu5.text")); // NOI18N
+        jMenu5.setName("jMenu5"); // NOI18N
+        jMenu2.add(jMenu5);
+
+        jMenu1.add(jMenu2);
+
+        jMenu3.setText(resourceMap.getString("jMenu3.text")); // NOI18N
+        jMenu3.setName("jMenu3"); // NOI18N
+
+        jMenu7.setText(resourceMap.getString("jMenu7.text")); // NOI18N
+        jMenu7.setName("jMenu7"); // NOI18N
+        jMenu3.add(jMenu7);
+
+        jMenu1.add(jMenu3);
+
+        jMenu4.setText(resourceMap.getString("jMenu4.text")); // NOI18N
+        jMenu4.setName("jMenu4"); // NOI18N
+
+        jMenu8.setText(resourceMap.getString("jMenu8.text")); // NOI18N
+        jMenu8.setName("jMenu8"); // NOI18N
+        jMenu4.add(jMenu8);
+
+        jMenu9.setText(resourceMap.getString("jMenu9.text")); // NOI18N
+        jMenu9.setName("jMenu9"); // NOI18N
+        jMenu4.add(jMenu9);
+
+        jMenu10.setText(resourceMap.getString("jMenu10.text")); // NOI18N
+        jMenu10.setName("jMenu10"); // NOI18N
+        jMenu4.add(jMenu10);
+
+        jMenu1.add(jMenu4);
+
+        menuBar.add(jMenu1);
+
+        jMenu6.setText(resourceMap.getString("jMenu6.text")); // NOI18N
+        jMenu6.setName("jMenu6"); // NOI18N
+
+        jMenu11.setText(resourceMap.getString("jMenu11.text")); // NOI18N
+        jMenu11.setName("jMenu11"); // NOI18N
+        jMenu6.add(jMenu11);
+
+        menuBar.add(jMenu6);
+
         helpMenu.setText(resourceMap.getString("helpMenu.text")); // NOI18N
         helpMenu.setName("helpMenu"); // NOI18N
+
+        jMenu12.setText(resourceMap.getString("jMenu12.text")); // NOI18N
+        jMenu12.setName("jMenu12"); // NOI18N
+        helpMenu.add(jMenu12);
+
+        jMenu13.setText(resourceMap.getString("jMenu13.text")); // NOI18N
+        jMenu13.setName("jMenu13"); // NOI18N
+        helpMenu.add(jMenu13);
 
         aboutMenuItem.setAction(actionMap.get("showAboutBox")); // NOI18N
         aboutMenuItem.setName("aboutMenuItem"); // NOI18N
@@ -1173,6 +1243,19 @@ public class OkapiProfilerView extends FrameView {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu10;
+    private javax.swing.JMenu jMenu11;
+    private javax.swing.JMenu jMenu12;
+    private javax.swing.JMenu jMenu13;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenu jMenu8;
+    private javax.swing.JMenu jMenu9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
